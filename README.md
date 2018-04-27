@@ -27,5 +27,4 @@ $gohs a.file 3
 gohs has some options.
 
 `-o` : set destination file path.
-
 `-s` : set split string.(ex '==========', '---------')
