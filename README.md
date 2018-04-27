@@ -5,7 +5,7 @@ gohs is horizontal split cli-tool for go.
 You need file path and split count.
 Default split string is blank (LF only).
 ```a.file
-#a.file
+$cat a.file
 1
 2
 3
