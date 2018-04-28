@@ -25,7 +25,13 @@ $gohs a.file 3
 
 # option
 gohs has some options.
-
-`-o` : set destination file path.
-
-`-s` : set split string.(ex '==========', '---------')
+```
+  -c uint
+        [Option] : Set split line count (default 5)
+  -o string
+        [Option] : Set output file path
+  -p string
+        [required] : Set source file path
+  -s string
+        [Option] : Set split string(ex: ************, ///////////// )
+```

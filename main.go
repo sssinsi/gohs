@@ -12,7 +12,7 @@ var (
 	count      = flag.Uint("c", 5, "[Option] : Set split line count")
 	outputPath = flag.String("o", "", "[Option] : Set output file path")
 	path       = flag.String("p", "", "[required] : Set source file path")
-	splitter   = flag.String("s", "", "[Option] : Set split string")
+	splitter   = flag.String("s", "", "[Option] : Set split string(ex: ************, ///////////// )")
 )
 
 type outputType int
