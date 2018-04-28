@@ -14,11 +14,11 @@ $cat a.file
 ```
 
 ```command
-$gohs a.file 3
+$gohs -p a.file -c 3 -s "************"
 1
 2
 3
-
+************
 4
 5
 ```
@@ -33,5 +33,5 @@ gohs has some options.
   -p string
         [required] : Set source file path
   -s string
-        [Option] : Set split string(ex: ************, ///////////// )
+        [Option] : Set split string(ex: "************", //////////// )
 ```

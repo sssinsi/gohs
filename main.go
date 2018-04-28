@@ -12,7 +12,7 @@ var (
 	count      = flag.Uint("c", 5, "[Option] : Set split line count")
 	outputPath = flag.String("o", "", "[Option] : Set output file path")
 	path       = flag.String("p", "", "[required] : Set source file path")
-	splitter   = flag.String("s", "", "[Option] : Set split string(ex: ************, ///////////// )")
+	splitter   = flag.String("s", "", "[Option] : Set split string(ex: \"************\", //////////// )")
 )
 
 type outputType int
@@ -40,7 +40,7 @@ func addLineFeed(o *os.File) {
 }
 
 func main() {
-	var ot outputType = std
+	ot := std
 	flag.Parse()
 
 	if *count < 1 {
