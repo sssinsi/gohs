@@ -28,9 +28,15 @@ func check(e error) {
 	}
 }
 
-func exist(path string) bool {
-	_, err := os.Stat(path)
-	return err == nil
+func addNewLine(o *os.File, line []byte) {
+	_, err := o.Write(line)
+	check(err)
+	addLineFeed(o)
+}
+
+func addLineFeed(o *os.File) {
+	_, err := o.Write(([]byte)("\n"))
+	check(err)
 }
 
 func main() {
@@ -48,14 +54,8 @@ func main() {
 
 	var o *os.File
 	if *outputPath != "" {
-		if exist(*outputPath) {
-			fmt.Println("exist")
-			o, err = os.Open(*outputPath)
-			check(err)
-		} else {
-			o, err = os.Create(*outputPath)
-			check(err)
-		}
+		o, err = os.OpenFile(*outputPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+		check(err)
 		ot = file
 	}
 	defer o.Close()
@@ -65,12 +65,11 @@ func main() {
 
 	for {
 		line, _, err := reader.ReadLine()
-
 		if err == io.EOF {
 			break
 		}
-
 		check(err)
+
 		lc++
 
 		switch ot {
@@ -81,18 +80,15 @@ func main() {
 				fmt.Println(*splitter)
 			}
 		case file:
-			fmt.Println("output file")
-			o.Write(line)
-			o.Write(([]byte)("\n"))
+			addNewLine(o, line)
+
 			if lc%*count == 0 {
-				_, err := o.Write(([]byte)(*splitter))
-				check(err)
-				_, err = o.Write(([]byte)("\n"))
-				check(err)
+				addNewLine(o, ([]byte)(*splitter))
 			}
 		}
 
 	}
+
 	switch ot {
 	case std:
 	case file:
